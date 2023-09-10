@@ -16,6 +16,6 @@ COPY . /streamlit
 
 EXPOSE 8501
 
-CMD ["streamlit", "run", "tests/testStreamlitPage.py"]
+CMD ["streamlit", "run", "ui.py"]
 
 
