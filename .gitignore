@@ -1,1 +1,4 @@
 startup.txt
+.vscode/
+.devcontainer/
+*.pyc
