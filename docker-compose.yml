@@ -1,8 +1,9 @@
 version: '3.8'
 services:
-  app:
+  npm-app:
     image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
+    container_name: npm-app
     ports:
       # These ports are in format <host-port>:<container-port>
       - '80:80' # Public HTTP Port
@@ -23,10 +24,15 @@ services:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
     depends_on:
-      - db
-  db:
+      - npm-db
+    networks:
+      - ghost-network
+      - npm-nw
+
+  npm-db:
     image: 'jc21/mariadb-aria:latest'
     restart: unless-stopped
+    container_name: npm-db
     environment:
       MYSQL_ROOT_PASSWORD: 'npm'
       MYSQL_DATABASE: 'npm'
@@ -34,8 +40,19 @@ services:
       MYSQL_PASSWORD: 'npm'
     volumes:
       - ./mysql:/var/lib/mysql
-  web:
+    networks:
+      - ghost-network
+  projects-website:
+    image: projects-website:latest
+    container_name: projects-website
     build: .
     restart: unless-stopped
     ports:
       - "8501:8501"
+    networks:
+      - ghost-network
+      - npm-nw
+networks:
+  ghost-network:
+  npm-nw: 
+    external: true
