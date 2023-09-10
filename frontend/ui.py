@@ -48,3 +48,17 @@ if st.button("Get segmentation map"):
     else:
         # handle case with no image
         st.write("Insert an image!")
+
+# TODO Hide 
+st.markdown(
+    """
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5S3PJ20P7"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-G5S3PJ20P7');
+        </script>
+    """, unsafe_allow_html=True)
