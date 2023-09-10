@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN python3 -m venv venv 
 
-RUN source venv/bin/activate
+RUN . venv/bin/activate
 
 RUN pip3 install -r requirements.txt
 
