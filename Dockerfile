@@ -1,5 +1,7 @@
 FROM python:3.9-slim
 
+COPY . . 
+
 WORKDIR .
 
 RUN apt-get update && apt-get install -y \
@@ -12,8 +14,6 @@ RUN apt-get update && apt-get install -y \
 RUN python3 -m venv venv 
 
 RUN . venv/bin/activate
-
-RUN ls
 
 RUN pip install -r requirements.txt
 
