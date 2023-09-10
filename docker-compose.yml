@@ -24,15 +24,14 @@ services:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
     depends_on:
-      - npm-db
+      - db
     networks:
       - ghost-network
       - npm-nw
 
-  npm-db:
+  db:
     image: 'jc21/mariadb-aria:latest'
     restart: unless-stopped
-    container_name: npm-db
     environment:
       MYSQL_ROOT_PASSWORD: 'npm'
       MYSQL_DATABASE: 'npm'
@@ -51,7 +50,6 @@ services:
       - "8501:8501"
     networks:
       - ghost-network
-      - npm-nw
 networks:
   ghost-network:
   npm-nw: 
