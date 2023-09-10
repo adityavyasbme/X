@@ -13,7 +13,7 @@ RUN python3 -m venv venv
 
 RUN . venv/bin/activate
 
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 
 EXPOSE 8501
 
