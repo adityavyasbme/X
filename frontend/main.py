@@ -2,9 +2,11 @@
 import requests
 import streamlit as st
 from src.infrastructure import google_analytics as ga
+import webbrowser
 
 # interact with FastAPI endpoint
 backend = "http://fastapi:8000/api/"
+api_url = 'work.adityavyas.co.in/docs'
 
 ga.inject_ga()
 
@@ -30,3 +32,6 @@ if st.button("Healthcheck"):
     else:
         data = "Healthcheck Failed"
     st.write(data)
+
+if st.button('API Docs'):
+    webbrowser.open_new_tab(api_url)
