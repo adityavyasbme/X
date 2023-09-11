@@ -3,14 +3,23 @@ version: '3'
 services:
   fastapi:
     build: backend/
+    restart: always
     ports: 
       - 8000:8000
     networks:
       - deploy_network
     container_name: fastapi
+    volumes:
+      - ./:/data
+    deploy:
+      resources:
+        limits:
+          cpus: '0.6'
+          memory: 700M
 
   streamlit:
     build: frontend/
+    restart: always
     depends_on:
       - fastapi
     ports: 
@@ -18,6 +27,13 @@ services:
     networks:
       - deploy_network
     container_name: streamlit
+    volumes:
+      - ./:/data    
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 200M
 
 networks:
   deploy_network:

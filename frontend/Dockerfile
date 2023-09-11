@@ -16,6 +16,6 @@ COPY . /streamlit
 
 EXPOSE 8501
 
-CMD ["streamlit", "run", "ui.py"]
+CMD ["streamlit", "run","--server.maxUploadSize 1", "ui.py"]
 
 
