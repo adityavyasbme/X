@@ -4,7 +4,7 @@ import streamlit as st
 from src.infrastructure import google_analytics as ga
 
 # interact with FastAPI endpoint
-backend = "http://fastapi:8000/"
+backend = "http://fastapi:8000/api/"
 
 ga.inject_ga()
 
