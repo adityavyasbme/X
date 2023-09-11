@@ -1,14 +1,16 @@
 
 import requests
 import streamlit as st
-from src.infrastructure import google_analytics as ga
-import webbrowser
+from src.infrastructure import googleAnalytics as ga
+from src.domain import pageConfig, footer
 
 # interact with FastAPI endpoint
 backend = "http://fastapi:8000/api/"
-api_url = 'work.adityavyas.co.in/docs'
+api_url = 'https://work.adityavyas.co.in/docs'
 
-ga.inject_ga()
+ga.inject_ga(st)
+pageConfig.set_page_config(st)
+footer.hide_footer(st)
 
 
 def healthcheck():
@@ -33,5 +35,8 @@ if st.button("Healthcheck"):
         data = "Healthcheck Failed"
     st.write(data)
 
-if st.button('API Docs'):
-    webbrowser.open_new_tab(api_url)
+
+st.markdown(
+    f'<a href="{api_url}" style="display: inline-block; padding: 12px 20px; background-color: #4CAF50; color: white; text-align: center; text-decoration: none; font-size: 16px; border-radius: 4px;">Action Text on Button</a>',
+    unsafe_allow_html=True
+)

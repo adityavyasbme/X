@@ -1,10 +1,9 @@
 import pathlib
 from bs4 import BeautifulSoup
-import streamlit as st
 import shutil
 
 
-def inject_ga():
+def inject_ga(st):
     GA_ID = "google_analytics"
 
     GA_JS = """
