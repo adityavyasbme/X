@@ -1,10 +1,12 @@
 from fastapi import FastAPI
-from src.infrastructure import healthcheck
+from src.infrastructure import healthCheck
 
 app = FastAPI(
-    title="Backend For X",
+    title="Backend APIs For X",
     description="""This is just a test api""",
     version="0.1.0",
+    docs_url="/api/docs",
+    openapi_url="/api/openapi.json"
 )
 
-app.include_router(healthcheck.router)
+app.include_router(healthCheck.router)

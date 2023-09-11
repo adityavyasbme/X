@@ -3,6 +3,6 @@ from fastapi import APIRouter
 router = APIRouter()
 
 
-@router.get("/healthcheck")
+@router.get("/api/healthcheck")
 async def healthcheck() -> bool:
     return True
