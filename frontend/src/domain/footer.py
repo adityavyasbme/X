@@ -1,12 +1,9 @@
 def hide_footer(st):
-    hide_menu = """
+    style = """
     <style>
-    #MainMenu {
-        visibility: hidden;
-    }
     footer {
         visibility:hidden;
     }
     </style>
     """
-    st.markdown(hide_menu, unsafe_allow_html=True)
+    st.markdown(style, unsafe_allow_html=True)

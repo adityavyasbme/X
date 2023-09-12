@@ -10,3 +10,6 @@ def set_page_config(st):
             'About': "[Click here to know more about me](https://adityavyas.co.in/about-me)"
         }
     )
+
+    if "shared" not in st.session_state:
+        st.session_state["shared"] = True
