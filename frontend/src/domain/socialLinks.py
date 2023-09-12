@@ -2,7 +2,7 @@ from src.infrastructure.socialLinks import st_button, load_css
 from PIL import Image
 
 
-def create_social_links(st, image_location="../assets/Adi-1.jpg"):
+def create_social_links(st, image_location="assets/Adi-1.jpg"):
     load_css()
 
     col1, col2 = st.columns(2)
@@ -14,6 +14,12 @@ def create_social_links(st, image_location="../assets/Adi-1.jpg"):
         st.info('Machine Learning Engineer with high ' +
                 'interest in data science and building large scale systems')
         icon_size = 20
+        st_button('website',
+                  'https://adityavyas.co.in',
+                  'Portfolio', icon_size)
+        st_button('api',
+                  'https://work.adityavyas.co.in/docs',
+                  'Backend API docs', icon_size)
         st_button('github',
                   'https://github.com/adityavyasbme/X',
                   'Check code for this website', icon_size)
