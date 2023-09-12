@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from src.infrastructure import healthCheck
+from src.application.coverLetterCreator import coverLetter
 
 app = FastAPI(
     title="Backend APIs For X",
@@ -10,3 +11,4 @@ app = FastAPI(
 )
 
 app.include_router(healthCheck.router)
+app.include_router(coverLetter.router)
