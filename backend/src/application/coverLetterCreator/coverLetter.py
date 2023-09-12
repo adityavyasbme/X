@@ -9,11 +9,11 @@ router = APIRouter()
 def coverLetterPrompt(job_description: str,
                       resume: str = None
                       ):
-    base = f"""
+    base = f"""\n
     write me a cover letter for this job description
-    '''
+    ---
     {job_description}
-    '''
+    ---\n
     Using the detailed information provided generate a customized cover letter.
     The job description lays out the specific roles,
     responsibilities, and required expertise for the open position.
@@ -28,12 +28,12 @@ def coverLetterPrompt(job_description: str,
     """
     if resume:
         return f"""
-        Here's my resume
-        '''
-        {resume}
-        '''
-        The resume includes the candidate's educational background,
-        skills, and experiences related to specific industries and roles.
+    Here's my resume \n
+    ---
+    {resume}
+    ---\n
+    The resume includes the candidate's educational background,
+    skills, and experiences related to specific industries and roles.
         """ + base
     else:
         return base
@@ -44,7 +44,7 @@ def coverLetterPromptResponse(
         api_key: str,
         job_description: str,
         resume: str = None,
-        model_name: str = "gpt-3.5-turbo") -> Dict[str, str]:
+        model_name: str = "gpt-3.5-turbo") -> str:
     return openAI.get_response(api_key=api_key,
                                content=coverLetterPrompt(
                                    resume=resume,
