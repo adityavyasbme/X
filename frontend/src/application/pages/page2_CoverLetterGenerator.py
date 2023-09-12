@@ -16,7 +16,7 @@ else:
 
 backend = "http://fastapi:8000/api/"
 
-st.markdown("# LLM Covel Letter Generator")
+st.markdown("# LLM Cover Letter Generator")
 
 option = st.selectbox(
     'Operations Available',
@@ -71,7 +71,8 @@ if option == 'GPT Cover Letter Generation (Requires API Key)':
                          )
         if r.status_code == 200:
             st.text_area(label="Here's your response",
-                         value=r.json())
+                         value=r.json(),
+                         height=700)
         else:
             st.text_area(label="Failed",
                          value=r.content)
