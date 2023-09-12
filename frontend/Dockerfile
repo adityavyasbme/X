@@ -6,10 +6,6 @@ COPY requirements.txt /streamlit
 
 WORKDIR /streamlit
 
-RUN python -m venv venv
-
-RUN . venv/bin/activate
-
 RUN pip install -r requirements.txt
 
 COPY . /streamlit

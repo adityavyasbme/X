@@ -4,7 +4,7 @@
 # References 
 
 
-### Deploymnet
+### Deployment
 
 - [How to host streamlit in a docker container with Apache on Digital Ocean](https://medium.com/@hiruyhadgu/displaying-a-streamlit-fastapi-app-on-digitalocean-droplet-using-custom-domain-1cfd4b6a4944)
 
