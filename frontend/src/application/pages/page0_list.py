@@ -18,4 +18,5 @@ st.markdown("# Project Lists")
 st.write(f"""
     1. [Demo Project]({base_path}/Demo%20Project)    
     2. [LLM - Cover Letter Generation]({base_path}/LLM%20-%20Cover%20Letter%20Generation)
+    2. [ML - Simple Linear Regression based Car Valuation]({base_path}/ML%20-%20Simple%20Linear%20Regression%20based%20Car%20Valuation)
 """)

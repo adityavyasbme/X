@@ -19,5 +19,7 @@ show_pages(
         Page(relative_pages_path + "page1_project1.py", "Demo Project", "👾"),
         Page(relative_pages_path + "page2_CoverLetterGenerator.py",
              "LLM - Cover Letter Generation", "📝"),
+        Page(relative_pages_path + "page3_carValuation.py",
+             "ML - Simple Linear Regression based Car Valuation", "📝"),
     ]
 )
