@@ -2,6 +2,7 @@
 docker-rebuild:
 	docker-compose down
 	git pull origin dev
-	docker rmi -f $(docker images -aq)
+	docker image rm x_fastapi
+	docker image rm x_streamlit
 	docker-compose up -d 
 
