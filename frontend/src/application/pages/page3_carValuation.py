@@ -12,10 +12,10 @@ if env == "Not Set":
     raise "Enviornment not set"
 elif env == 'local':
     base_path = "http://localhost:8501"
+    backend = "http://localhost:8000/api/"
 else:
     base_path = "http://work.adityavyas.co.in"
-
-backend = "http://localhost:8000/api/"
+    backend = "http://fastapi:8000/api/"
 
 st.markdown("# Car Valuation")
 
