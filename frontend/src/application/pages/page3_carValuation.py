@@ -32,7 +32,10 @@ of our training data. Consequently, in such instances, the model's
 predictions may not precisely reflect the true market value of these unique
 vehicles.
          
-In future, I would focus on integrating better algorithm, e.g., XGBoost         
+To improve, I would prefer to use Decistion Tree Model, but at the same time
+I would like to do proper feature engineering and selection. Currently, 
+there is no normalization of data, and highest/lowest bounds are influencing 
+the regression result highly.        
 """)
 
 option = st.selectbox(
