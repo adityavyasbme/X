@@ -7,10 +7,14 @@ import numpy as np
 from sklearn.metrics import mean_squared_error
 from typing import List
 import warnings
+from expiring_lru_cache import lru_cache, DAYS
+from fastapi import APIRouter
+
 
 # Config
 yfin.pdr_override()
 warnings.filterwarnings("ignore")
+router = APIRouter()
 
 # Params
 
@@ -29,6 +33,7 @@ def find_lagged_return(data: pd.DataFrame,
         return np.log(data.loc[:, ticker]).diff(return_period)
 
 
+@lru_cache(maxsize=1, expires_after=0.5*DAYS)
 def get_data():
     # Getting Microsoft, IBM, and Google data from yahoo finance
     stk_tickers = ['MSFT', 'IBM', 'GOOGL']
@@ -80,7 +85,7 @@ def prepare_data(weekly_return_period: int, validation_size: float):
     X = pd.concat([X1, X2, X3, X4], axis=1)
     print(
         f"X has minimum date of {min(X.index)} and maximum" +
-        " date of {max(X.index)}")
+        f" date of {max(X.index)}")
 
     X['DEXJPUS'] = X['DEXJPUS'].fillna(method='ffill')
     X['DEXUSUK'] = X['DEXUSUK'].fillna(method='ffill')
@@ -105,12 +110,16 @@ def prepare_data(weekly_return_period: int, validation_size: float):
                            'DEXUSUK', 'SP500', 'DJIA', 'VIXCLS']]
 
     # convert the index datetime index with frequency
-    X_train_ARIMA.index = pd.DatetimeIndex(X_train_ARIMA.index).to_period('W')
-    X_test_ARIMA.index = pd.DatetimeIndex(X_test_ARIMA.index).to_period('W')
+    # X_train_ARIMA.index = pd.DatetimeIndex(
+    # X_train_ARIMA.index).to_period('W')
+    # X_test_ARIMA.index = pd.DatetimeIndex(
+    # X_test_ARIMA.index).to_period('W')
     Y_train_ARIMA = Y_train
-    Y_train_ARIMA.index = pd.DatetimeIndex(Y_train_ARIMA.index).to_period('W')
+    # Y_train_ARIMA.index = pd.DatetimeIndex(
+    # Y_train_ARIMA.index).to_period('W')
     Y_test_ARIMA = Y_test.copy()
-    Y_test_ARIMA.index = pd.DatetimeIndex(Y_test_ARIMA.index).to_period('W')
+    # Y_test_ARIMA.index = pd.DatetimeIndex(
+    # Y_test_ARIMA.index).to_period('W')
     return X_train_ARIMA, Y_train_ARIMA, X_test_ARIMA, Y_test_ARIMA, Y_test
 
 
@@ -124,7 +133,7 @@ def evaluate_arima_model(arima_order, data):
     return error
 
 
-def evaluate_models(p_values, d_values, q_values, data):
+def evaluate_models(p_values, d_values, q_values, data, verbose=0):
     best_score, best_cfg = float("inf"), None
     for p in p_values:
         for d in d_values:
@@ -134,7 +143,8 @@ def evaluate_models(p_values, d_values, q_values, data):
                     mse = evaluate_arima_model(order, data)
                     if mse < best_score:
                         best_score, best_cfg = mse, order
-                    print(f'ARIMA {order} MSE {mse}')
+                    if verbose:
+                        print(f'ARIMA {order} MSE {mse}')
                 except Exception as e:
                     print(e)
                     continue
@@ -187,4 +197,20 @@ def run_model_and_get_results(weekly_return_period: int = 5,
     return final_result
 
 
-print(run_model_and_get_results())
+@router.get("/api/stockPrediction")
+@lru_cache(maxsize=1, expires_after=0.5*DAYS)
+def api_response():
+    res = []
+    for p in range(2, 6):
+        for q in range(1, 5):
+            print(p, q/100)
+            res.append(run_model_and_get_results(p, q/100))
+
+    recent_data = pd.concat(res, axis=1).dropna().iloc[-1]
+    response = {
+        "recent_date": recent_data.name.strftime("%B'%d,%Y"),
+        "minimum_expectation": min(recent_data),
+        "average_expectation": np.mean(recent_data),
+        "maximum_expectation": max(recent_data)
+    }
+    return response
