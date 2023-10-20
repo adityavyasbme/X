@@ -4,7 +4,6 @@ import os
 
 env = os.environ.get('ENVIRONMENT', 'Not Set')
 if env == "Not Set":
-    print(os.environ)
     print("Setting env variables")
     os.environ["ENVIRONMENT"] = 'local'  # 'dev' 'test' 'prod'
 
@@ -22,6 +21,6 @@ show_pages(
         Page(relative_pages_path + "page3_carValuation.py",
              "ML - Simple Linear Regression based Car Valuation", "📝"),
         Page(relative_pages_path + "page4_stockPrediction.py",
-             "Stock Price Prediction using ARIMA", "📝"),
+             "ML - Stock Price Prediction using ARIMA", "📝"),
     ]
 )

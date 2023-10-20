@@ -17,7 +17,7 @@ else:
     base_path = "http://work.adityavyas.co.in"
     backend = "http://fastapi:8000/api/"
 
-st.markdown("# Microsoft Stock Prediction")
+st.markdown("# Microsoft Stock Price Prediction")
 
 st.markdown("### Why ARIMA? ")
 st.write("""
