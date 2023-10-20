@@ -73,8 +73,9 @@ st.warning("This is a prediction for next week." +
 
 url = backend+'stockPrediction'
 with st.spinner("""It takes about 5 minute to train the model 
-every day; So be patient! Once the model is trained 
-you will see the result asap!"""):
+every day; So be patient! Don't Rerun or Refresh the page! 
+Once the model is trained 
+you will see the result!"""):
     r = requests.get(url)
 if r.status_code == 200:
     st.json(r.json())
