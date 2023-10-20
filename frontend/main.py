@@ -21,5 +21,7 @@ show_pages(
              "LLM - Cover Letter Generation", "📝"),
         Page(relative_pages_path + "page3_carValuation.py",
              "ML - Simple Linear Regression based Car Valuation", "📝"),
+        Page(relative_pages_path + "page4_stockPrediction.py",
+             "Stock Price Prediction using ARIMA", "📝"),
     ]
 )

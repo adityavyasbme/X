@@ -198,7 +198,7 @@ def run_model_and_get_results(weekly_return_period: int = 5,
 
 
 @router.get("/api/stockPrediction")
-@lru_cache(maxsize=1, expires_after=0.5*DAYS)
+@lru_cache(maxsize=1, expires_after=0.8*DAYS)
 def api_response():
     res = []
     for p in range(2, 6):
@@ -208,7 +208,7 @@ def api_response():
 
     recent_data = pd.concat(res, axis=1).dropna().iloc[-1]
     response = {
-        "recent_date": recent_data.name.strftime("%B'%d,%Y"),
+        "recent_date": recent_data.name.strftime("%B'%d, %Y"),
         "minimum_expectation": min(recent_data),
         "average_expectation": np.mean(recent_data),
         "maximum_expectation": max(recent_data)
