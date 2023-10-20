@@ -37,7 +37,7 @@ prices, IBM's "Adj Close" prices, Japan-US exchange rates,
 US-UK exchange rates, and key indices such as the S&P 500, 
 DJIA, and VIXCLS. To make the data more amenable to analysis, 
 I converted these values into their natural logarithms and 
-shifted them by a period of five weeks. This transformation 
+shifted them by a period of five days. This transformation 
 allowed me to better capture trends and patterns in the data.
 
 Upon running the models, I meticulously assessed their 
