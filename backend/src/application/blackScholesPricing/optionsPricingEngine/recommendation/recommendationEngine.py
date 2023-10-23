@@ -17,4 +17,4 @@ class RecommendationEngine:
         if not recommendations:
             return "No recommendation available."
 
-        return " \n".join(recommendations)
+        return " \n\n".join(recommendations)

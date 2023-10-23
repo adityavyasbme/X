@@ -4,6 +4,7 @@ from src.application.blackScholesPricing.optionsPricingEngine.recommendation.rec
 from src.application.blackScholesPricing.blackScholesPricingParams import OptionCalculatorModel
 
 from fastapi import APIRouter
+import json
 
 router = APIRouter()
 
@@ -34,4 +35,7 @@ def optionPricingRecommendation(oci: OptionCalculatorModel):
     engine = RecommendationEngine(rules=rules)
     data = calculator.modelResults
     data.update(calculator.modelParams)
-    return engine.recommend(data)
+    return {
+        "result": json.dumps(calculator.modelResults),
+        "recommendation": engine.recommend(data)
+    }
