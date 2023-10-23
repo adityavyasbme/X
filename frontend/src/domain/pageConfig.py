@@ -1,3 +1,6 @@
+import os
+
+
 def set_page_config(st):
     st.set_page_config(
         page_title="Aditya Vyas Pet Projects",
@@ -13,3 +16,20 @@ def set_page_config(st):
 
     if "shared" not in st.session_state:
         st.session_state["shared"] = True
+
+
+def set_env_vars():
+    env = os.environ.get('ENVIRONMENT', 'Not Set')
+    if env == "Not Set":
+        print("Setting env variables")
+        os.environ["ENVIRONMENT"] = 'local'  # 'dev' 'test' 'prod'
+
+    env = os.environ.get('ENVIRONMENT', 'Not Set')
+    if env == "Not Set":
+        raise "Enviornment not set"
+    elif env == 'local':
+        os.environ["base_path"] = "http://localhost:8501"
+        os.environ["backend"] = "http://localhost:8000/api/"
+    else:
+        os.environ["base_path"] = "http://work.adityavyas.co.in"
+        os.environ["backend"] = "http://fastapi:8000/api/"

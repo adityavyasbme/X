@@ -2,16 +2,11 @@ from urllib.parse import urlparse
 import streamlit as st
 from src.domain import footer
 import os
-
+from src.domain.pageConfig import set_env_vars
+set_env_vars()
 footer.hide_footer(st)
 
-env = os.environ.get('ENVIRONMENT', 'Not Set')
-if env == "Not Set":
-    raise "Enviornment not set"
-elif env == 'local':
-    base_path = "http://localhost:8501"
-else:
-    base_path = "http://work.adityavyas.co.in"
+base_path = os.environ['base_path']
 
 
 st.markdown("# Project Lists")
@@ -20,4 +15,6 @@ st.write(f"""
     2. [LLM - Cover Letter Generation]({base_path}/LLM%20-%20Cover%20Letter%20Generation)
     3. [ML - Simple Linear Regression based Car Valuation]({base_path}/ML%20-%20Simple%20Linear%20Regression%20based%20Car%20Valuation)
     4. [ML - Stock Price Prediction using ARIMA]({base_path}/ML%20-%20Stock%20Price%20Prediction%20using%20ARIMA)
+    5. [Option Pricing using Black Scholes with Rule Based Recommendations ]({base_path}/Option%20Pricing%20using%20Black%20Scholes%20with%20BONUS%20Rule%20Based%20Recommendations)
+    
 """)

@@ -22,5 +22,7 @@ show_pages(
              "ML - Simple Linear Regression based Car Valuation", "📝"),
         Page(relative_pages_path + "page4_stockPrediction.py",
              "ML - Stock Price Prediction using ARIMA", "📝"),
+        Page(relative_pages_path + "page5_blackScholesRecommendation.py",
+             "Option Pricing using Black Scholes with BONUS Rule Based Recommendations", "📝"),
     ]
 )
