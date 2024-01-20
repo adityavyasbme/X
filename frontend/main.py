@@ -24,5 +24,7 @@ show_pages(
              "ML - Stock Price Prediction using ARIMA", "📝"),
         Page(relative_pages_path + "page5_blackScholesRecommendation.py",
              "Option Pricing using Black Scholes with BONUS Rule Based Recommendations", "📝"),
+        Page(relative_pages_path + "page6_ChatWithPDF.py",
+             "Chat With PDF", "💬"),          
     ]
 )
