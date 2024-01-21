@@ -16,5 +16,7 @@ st.write(f"""
     3. [ML - Simple Linear Regression based Car Valuation]({base_path}/ML%20-%20Simple%20Linear%20Regression%20based%20Car%20Valuation)
     4. [ML - Stock Price Prediction using ARIMA]({base_path}/ML%20-%20Stock%20Price%20Prediction%20using%20ARIMA)
     5. [Option Pricing using Black Scholes with Rule Based Recommendations ]({base_path}/Option%20Pricing%20using%20Black%20Scholes%20with%20BONUS%20Rule%20Based%20Recommendations)
-    
+    6. [Chat with PDF]({base_path}/Chat%20With%20PDF)
+    7. [Youtube Summarizer ]({base_path}/Youtube%20Summarizer)
+   
 """)

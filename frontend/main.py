@@ -25,6 +25,8 @@ show_pages(
         Page(relative_pages_path + "page5_blackScholesRecommendation.py",
              "Option Pricing using Black Scholes with BONUS Rule Based Recommendations", "📝"),
         Page(relative_pages_path + "page6_ChatWithPDF.py",
-             "Chat With PDF", "💬"),          
+             "Chat With PDF", "💬"),
+     Page(relative_pages_path + "page7_YoutubeSummarizer.py",
+          "Youtube Summarizer", "📹"),          
     ]
 )
