@@ -14,3 +14,4 @@ openai==1.8.0
 youtube-transcript-api==0.6.2
 pytube==15.0.0
 pyperclip==1.8.2
+clipboard==0.0.4
