@@ -2,12 +2,8 @@ import streamlit as st
 from src.domain import footer
 import os
 from src.domain.pageConfig import set_env_vars
-from datetime import datetime
-from src.infrastructure.copyButton import on_copy_click
 
 # LLM Specific
-import pickle
-from PyPDF2 import PdfReader
 from langchain.llms import OpenAI
 from langchain.document_loaders import YoutubeLoader
 from langchain.llms import OpenAI
@@ -397,11 +393,17 @@ Towards Self Score : {scores["Towards Self"]}
 It seems like I exhibit a {towards_others_insight} mindset towards others and a {towards_self_insight} mindset towards myself.
 </responses>
 """
+    from st_copy_to_clipboard import st_copy_to_clipboard
+    # Render copy to clipboard button
+    st.markdown("Copy Your Response - ")
+    st_copy_to_clipboard(key='Copy Your Response', text=all_responses)
+    st_copy_to_clipboard(key='LLM Prompt', text=prompt_responses)
+
     # Display a button to copy responses to clipboard
-    if st.button("📋 Copy Your Responses", on_click=on_copy_click, args=(all_responses,)):
+    if st.button("📋 Copy Your Responses"):
         # Use pyperclip to copy responses to clipboard
         st.success("Responses copied to clipboard!")
     # Display a button to copy responses to clipboard
-    if st.button("📋 LLM Prompt", on_click=on_copy_click, args=(prompt_responses,)):
+    if st.button("📋 LLM Prompt"):
         # Use pyperclip to copy responses to clipboard
         st.success("Responses copied to clipboard!")
