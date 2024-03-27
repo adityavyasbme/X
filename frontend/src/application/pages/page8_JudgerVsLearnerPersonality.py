@@ -3,7 +3,7 @@ from src.domain import footer
 import os
 from src.domain.pageConfig import set_env_vars
 from datetime import datetime
-import pyperclip  # Import the pyperclip library for clipboard operations
+from src.infrastructure.copyButton import on_copy_click
 
 # LLM Specific
 import pickle
@@ -13,6 +13,7 @@ from langchain.document_loaders import YoutubeLoader
 from langchain.llms import OpenAI
 from langchain.chains.summarize import load_summarize_chain
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+
 
 set_env_vars()
 footer.hide_footer(st)
@@ -397,13 +398,10 @@ It seems like I exhibit a {towards_others_insight} mindset towards others and a 
 </responses>
 """
     # Display a button to copy responses to clipboard
-    if st.button("Copy Your Responses"):
+    if st.button("📋 Copy Your Responses", on_click=on_copy_click, args=(all_responses,)):
         # Use pyperclip to copy responses to clipboard
-        pyperclip.copy(all_responses)
         st.success("Responses copied to clipboard!")
-
     # Display a button to copy responses to clipboard
-    if st.button("LLM Prompt"):
+    if st.button("📋 LLM Prompt", on_click=on_copy_click, args=(prompt_responses,)):
         # Use pyperclip to copy responses to clipboard
-        pyperclip.copy(prompt_responses)
         st.success("Responses copied to clipboard!")
