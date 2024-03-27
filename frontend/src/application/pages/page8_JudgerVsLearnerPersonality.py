@@ -395,15 +395,7 @@ It seems like I exhibit a {towards_others_insight} mindset towards others and a 
 """
     from st_copy_to_clipboard import st_copy_to_clipboard
     # Render copy to clipboard button
-    st.markdown("Copy Your Response - ")
+    st.write("Click Below 📋 to Copy Your Response - ")
     st_copy_to_clipboard(key='Copy Your Response', text=all_responses)
+    st.write("Click Below 📋 to Copy LLM Prompt for further analysis - ")
     st_copy_to_clipboard(key='LLM Prompt', text=prompt_responses)
-
-    # Display a button to copy responses to clipboard
-    if st.button("📋 Copy Your Responses"):
-        # Use pyperclip to copy responses to clipboard
-        st.success("Responses copied to clipboard!")
-    # Display a button to copy responses to clipboard
-    if st.button("📋 LLM Prompt"):
-        # Use pyperclip to copy responses to clipboard
-        st.success("Responses copied to clipboard!")
